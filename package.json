@@ -18,9 +18,17 @@
     ],
     "outputPath": "dist"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["openclaw", "log-viewer", "ndjson", "debugging"],
+  "author": "Cherno Jagne",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chernojagne/openclaw-logviewer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chernojagne/openclaw-logviewer/issues"
+  },
+  "homepage": "https://github.com/chernojagne/openclaw-logviewer#readme",
   "dependencies": {
     "express": "^5.2.1"
   }
