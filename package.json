@@ -18,7 +18,12 @@
     ],
     "outputPath": "dist"
   },
-  "keywords": ["openclaw", "log-viewer", "ndjson", "debugging"],
+  "keywords": [
+    "openclaw",
+    "log-viewer",
+    "ndjson",
+    "debugging"
+  ],
   "author": "Cherno Jagne",
   "license": "MIT",
   "repository": {
