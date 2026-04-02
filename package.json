@@ -1,0 +1,27 @@
+{
+  "name": "openclaw-logviewer",
+  "version": "1.0.0",
+  "description": "Web log viewer for OpenClaw logs",
+  "main": "src/server.js",
+  "bin": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "build": "pkg . --out-path dist",
+    "build:win": "pkg . --target node18-win-x64 --out-path dist",
+    "build:mac": "pkg . --target node18-macos-x64 --out-path dist",
+    "build:linux": "pkg . --target node18-linux-x64 --out-path dist"
+  },
+  "pkg": {
+    "assets": [
+      "public/**/*"
+    ],
+    "outputPath": "dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

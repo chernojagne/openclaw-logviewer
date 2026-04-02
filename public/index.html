@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenClaw Log Viewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="bg-glow bg-glow-one"></div>
+    <div class="bg-glow bg-glow-two"></div>
+
+    <header class="topbar">
+        <div>
+            <h1>OpenClaw Log Viewer</h1>
+            <p class="subtitle">Structured timeline and diagnostics for gateway activity</p>
+        </div>
+    </header>
+
+    <main class="layout">
+        <section class="controls panel">
+            <h2>Data Source</h2>
+            <div class="source-row">
+                <button id="loadPathBtn" class="btn icon-btn" type="button" title="Choose log file"
+                    aria-label="Choose log file">
+                    <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true" focusable="false">
+                        <path
+                            d="M3 6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v2H3V6zm0 5h18l-2 8a2 2 0 0 1-2 1H5a2 2 0 0 1-2-2v-7z" />
+                    </svg>
+                </button>
+                <button id="refreshBtn" class="btn icon-btn" type="button" title="reload log file"
+                    aria-label="reload log file">
+                    <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true" focusable="false">
+                        <path d="M12 5a7 7 0 0 1 6.65 4.84H16v2h6V6h-2v2.08A9 9 0 1 0 21 12h-2a7 7 0 1 1-7-7z" />
+                    </svg>
+                </button>
+                <input id="fileInput" type="file" accept=".log,.txt,.json,application/json,text/plain" hidden />
+            </div>
+            <p id="sourceMeta" class="meta">Loading...</p>
+
+            <h2>Filters</h2>
+            <div class="filters-grid">
+                <div class="search-wrap">
+                    <input id="searchInput" type="text" placeholder="Search message, subsystem, logger" />
+                    <button id="clearSearchBtn" class="search-clear" type="button" aria-label="Clear search">x</button>
+                </div>
+            </div>
+            <div id="levelPills" class="level-pills">
+                <button class="level-pill active" data-level="">All</button>
+                <button class="level-pill" data-level="DEBUG">Debug</button>
+                <button class="level-pill" data-level="INFO">Info</button>
+                <button class="level-pill" data-level="WARN">Warn</button>
+                <button class="level-pill" data-level="ERROR">Error</button>
+            </div>
+        </section>
+
+        <section class="dashboard panel">
+            <h2>Dashboard</h2>
+            <div class="dashboard-grid">
+                <div class="dashboard-left">
+                    <div id="statsCards" class="cards"></div>
+                    <div class="summary-lists">
+                        <div>
+                            <h3>Top Subsystems</h3>
+                            <ul id="topSubsystems"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-right">
+                    <h3>Messages By Hour</h3>
+                    <div class="time-chart-wrap">
+                        <canvas id="timeChartCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="results panel">
+            <div class="results-head">
+                <h2>Entries</h2>
+                <span id="resultCount">0</span>
+            </div>
+            <div class="content-grid">
+                <div id="entryList" class="entry-list"></div>
+                <article id="detailPane" class="detail-pane">
+                    <h3>Details</h3>
+                    <p>Select an entry to inspect fields and raw JSON.</p>
+                </article>
+            </div>
+            <div id="pagingBar" class="paging-bar"></div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
